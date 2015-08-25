@@ -97,6 +97,7 @@ public class MainActivity extends AppCompatActivity {
             logList.remove(logSize);
         }
         logAdapter.notifyDataSetChanged();
+        lvLog.smoothScrollToPosition(0);
     }
 
     /////////////////////////////////////////////////////////////////////////////////////////// MENU
