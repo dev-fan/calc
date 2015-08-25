@@ -3,17 +3,22 @@ package ua.dp.altermann.calc;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.text.InputType;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
+import android.widget.ListView;
+import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.regex.PatternSyntaxException;
 
 import ua.dp.altermann.calc.expression.BaseExpr;
@@ -21,9 +26,14 @@ import ua.dp.altermann.calc.expression.BaseExpr;
 public class MainActivity extends AppCompatActivity {
 
     public static final String LOG_TAG = "Calc_main";
+    public static final String LIST_ATTR_EXPRESSION = "expression";
+    public static final String LIST_ATTR_RESULT = "result";
 
-    EditText etExpression;
-    TextView tvResult;
+    private ListView lvLog;
+    private EditText etExpression;
+    private int logSize = 20;
+    private SimpleAdapter logAdapter;
+    private List<Map<String, Object>> logList = new ArrayList<>(20);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,8 +42,19 @@ public class MainActivity extends AppCompatActivity {
         etExpression = (EditText) findViewById(R.id.etExpression);
         InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(etExpression.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
-        tvResult = (TextView) findViewById(R.id.tvResult);
-//        Button btnCalc = (Button) findViewById(R.id.btnCalc);
+
+        // Логирование выражений
+        lvLog = (ListView) findViewById(R.id.lvLog);
+        String[] fromSA = {LIST_ATTR_EXPRESSION, LIST_ATTR_RESULT};
+        int[] toSA = {R.id.tvExpr, R.id.tvResult};
+        logAdapter = new SimpleAdapter(this, logList, R.layout.list_log_item, fromSA, toSA);
+        lvLog.setAdapter(logAdapter);
+        lvLog.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Map<String, Object> item = (HashMap<String, Object>) parent.getAdapter().getItem(position);
+                etExpression.setText((String) item.get(LIST_ATTR_EXPRESSION));
+            }
+        });
     }
 
     public void onInput(View v) {
@@ -58,16 +79,26 @@ public class MainActivity extends AppCompatActivity {
         try {
             String expr = etExpression.getText().toString();
             String result = BaseExpr.calc(expr);
-            tvResult.setText(tvResult.getText() + "\n" + expr + " = " + result);
-            Log.d(LOG_TAG, "RESULT: " + expr + " = " + result);
             etExpression.setText("");
+            addLog(expr, result);
         } catch (PatternSyntaxException e) {
             Log.d(LOG_TAG, e.getMessage()); // getDescription() + getIndex() + getPattern()
-        } catch (Exception e) {
+        } catch (NumberFormatException e) {
             Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
-//            Log.d(LOG_TAG, e.getMessage());
         }
     }
+
+    private void addLog(String expression, String result) {
+        Map<String, Object> mSA = new HashMap<>();
+        mSA.put(LIST_ATTR_EXPRESSION, expression);
+        mSA.put(LIST_ATTR_RESULT, result);
+        logList.add(0, mSA);
+        if (logList.size() > logSize) {
+            logList.remove(logSize);
+        }
+        logAdapter.notifyDataSetChanged();
+    }
+
     /////////////////////////////////////////////////////////////////////////////////////////// MENU
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
