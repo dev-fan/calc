@@ -17,18 +17,19 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
         android:textColor="@color/list_item_expr"
         android:textSize="@dimen/list_text_size"
-        android:text="@string/calc"
-        android:layout_gravity="bottom">
+        android:text="@string/calc">
     </TextView>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginRight="@dimen/list_result_margin"
         android:id="@+id/tvResult"
         android:textColor="@color/list_item_result"
         android:textSize="@dimen/list_text_size"
-        android:layout_gravity="bottom"
         android:text="">
     </TextView>
 </LinearLayout>

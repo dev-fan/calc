@@ -39,6 +39,7 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_margin="@dimen/btn_margin"
                 android:text="@string/one"
                 android:textSize="@dimen/btn_text_size"
                 android:textStyle="bold"
@@ -50,6 +51,7 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_margin="@dimen/btn_margin"
                 android:text="@string/two"
                 android:textSize="@dimen/btn_text_size"
                 android:textStyle="bold"
@@ -61,6 +63,7 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_margin="@dimen/btn_margin"
                 android:text="@string/three"
                 android:textSize="@dimen/btn_text_size"
                 android:textStyle="bold"
@@ -72,6 +75,7 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_margin="@dimen/btn_margin"
                 android:text="@string/delete"
                 android:textSize="@dimen/btn_text_size"
                 android:textStyle="bold"
@@ -83,6 +87,7 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_margin="@dimen/btn_margin"
                 android:text="@string/clear"
                 android:textSize="@dimen/btn_text_size"
                 android:textStyle="bold"
@@ -100,6 +105,7 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_margin="@dimen/btn_margin"
                 android:text="@string/four"
                 android:textSize="@dimen/btn_text_size"
                 android:textStyle="bold"
@@ -111,6 +117,7 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_margin="@dimen/btn_margin"
                 android:text="@string/five"
                 android:textSize="@dimen/btn_text_size"
                 android:textStyle="bold"
@@ -122,6 +129,7 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_margin="@dimen/btn_margin"
                 android:text="@string/six"
                 android:textSize="@dimen/btn_text_size"
                 android:textStyle="bold"
@@ -133,6 +141,7 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_margin="@dimen/btn_margin"
                 android:text="@string/multi"
                 android:textSize="@dimen/btn_text_size"
                 android:textStyle="bold"
@@ -144,6 +153,7 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_margin="@dimen/btn_margin"
                 android:text="@string/div"
                 android:textSize="@dimen/btn_text_size"
                 android:textStyle="bold"
@@ -161,6 +171,7 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_margin="@dimen/btn_margin"
                 android:text="@string/seven"
                 android:textSize="@dimen/btn_text_size"
                 android:textStyle="bold"
@@ -172,6 +183,7 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_margin="@dimen/btn_margin"
                 android:text="@string/eight"
                 android:textSize="@dimen/btn_text_size"
                 android:textStyle="bold"
@@ -183,6 +195,7 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_margin="@dimen/btn_margin"
                 android:text="@string/nine"
                 android:textSize="@dimen/btn_text_size"
                 android:textStyle="bold"
@@ -194,6 +207,7 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_margin="@dimen/btn_margin"
                 android:text="@string/add"
                 android:textSize="@dimen/btn_text_size"
                 android:textStyle="bold"
@@ -205,6 +219,7 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_margin="@dimen/btn_margin"
                 android:text="@string/sub"
                 android:textSize="@dimen/btn_text_size"
                 android:textStyle="bold"
@@ -222,6 +237,7 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_margin="@dimen/btn_margin"
                 android:text="@string/dot"
                 android:textSize="@dimen/btn_text_size"
                 android:textStyle="bold"
@@ -233,6 +249,7 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_margin="@dimen/btn_margin"
                 android:text="@string/zero"
                 android:textSize="@dimen/btn_text_size"
                 android:textStyle="bold"
@@ -244,6 +261,7 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_margin="@dimen/btn_margin"
                 android:text="@string/bracket_open"
                 android:textSize="@dimen/btn_text_size"
                 android:textStyle="bold"
@@ -255,6 +273,7 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_margin="@dimen/btn_margin"
                 android:text="@string/bracket_close"
                 android:textSize="@dimen/btn_text_size"
                 android:textStyle="bold"
@@ -266,6 +285,7 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_margin="@dimen/btn_margin"
                 android:text="@string/calc"
                 android:textSize="@dimen/btn_text_size"
                 android:textStyle="bold"
