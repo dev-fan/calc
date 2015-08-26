@@ -4,36 +4,31 @@ import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.regex.PatternSyntaxException;
 
+import ua.dp.altermann.calc.adapter.LogAdapter;
 import ua.dp.altermann.calc.expression.BaseExpr;
+import ua.dp.altermann.calc.model.CalcModel;
 
 public class MainActivity extends Activity {
 
     public static final String LOG_TAG = "Calc_main";
-    public static final String LIST_ATTR_EXPRESSION = "expression";
-    public static final String LIST_ATTR_RESULT = "result";
 
     private ListView lvLog;
     private EditText etExpression;
     private int logSize = 20;
-    private SimpleAdapter logAdapter;
-    private List<Map<String, Object>> logList = new ArrayList<>(20);
+    private LogAdapter logAdapter;
+    private List<CalcModel> logList = new ArrayList<>(20);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,17 +40,29 @@ public class MainActivity extends Activity {
 
         // Логирование выражений
         lvLog = (ListView) findViewById(R.id.lvLog);
-        String[] fromSA = {LIST_ATTR_EXPRESSION, LIST_ATTR_RESULT};
-        int[] toSA = {R.id.tvExpr, R.id.tvResult};
-        logAdapter = new SimpleAdapter(this, logList, R.layout.list_log_item, fromSA, toSA);
+        logAdapter = new LogAdapter(this, logList);
         lvLog.setAdapter(logAdapter);
         lvLog.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Map<String, Object> item = (HashMap<String, Object>) parent.getAdapter().getItem(position);
-                etExpression.setText((String) item.get(LIST_ATTR_EXPRESSION));
+                CalcModel item = (CalcModel) parent.getAdapter().getItem(position);
+                etExpression.setText(item.expression);
             }
         });
     }
+
+//    @Override
+//    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) { // При повороте экрана
+//        super.onRestoreInstanceState(savedInstanceState);
+//        Log.d(LOG_TAG, "onRestoreInstanceState()");
+//        cnt = savedInstanceState.getInt("count");
+//    }
+//
+//    @Override
+//    protected void onSaveInstanceState(Bundle outState) {
+//        super.onSaveInstanceState(outState);
+//        outState.putInt("count", cnt);
+//        Log.d(LOG_TAG, "onSaveInstanceState()");
+//    }
 
     public void onInput(View v) {
         etExpression.setText(etExpression.getText().toString() + ((Button) v).getText());
@@ -89,10 +96,8 @@ public class MainActivity extends Activity {
     }
 
     private void addLog(String expression, String result) {
-        Map<String, Object> mSA = new HashMap<>();
-        mSA.put(LIST_ATTR_EXPRESSION, expression);
-        mSA.put(LIST_ATTR_RESULT, result);
-        logList.add(0, mSA);
+        CalcModel calcModel = new CalcModel(expression, result);
+        logList.add(0, calcModel);
         if (logList.size() > logSize) {
             logList.remove(logSize);
         }
