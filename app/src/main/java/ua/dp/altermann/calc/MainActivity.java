@@ -3,6 +3,7 @@ package ua.dp.altermann.calc;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -18,17 +19,19 @@ import java.util.regex.PatternSyntaxException;
 
 import ua.dp.altermann.calc.adapter.LogAdapter;
 import ua.dp.altermann.calc.expression.BaseExpr;
-import ua.dp.altermann.calc.model.CalcModel;
+import ua.dp.altermann.calc.model.LogModel;
 
 public class MainActivity extends Activity {
 
     public static final String LOG_TAG = "Calc_main";
+    protected static final String SAVE_EXPR = "save_expr";
+    protected static final String SAVE_RESULT = "save_result";
 
     private ListView lvLog;
     private EditText etExpression;
     private int logSize = 20;
     private LogAdapter logAdapter;
-    private List<CalcModel> logList = new ArrayList<>(20);
+    private List<LogModel> logList = new ArrayList<>(21);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,25 +47,11 @@ public class MainActivity extends Activity {
         lvLog.setAdapter(logAdapter);
         lvLog.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                CalcModel item = (CalcModel) parent.getAdapter().getItem(position);
+                LogModel item = (LogModel) parent.getAdapter().getItem(position);
                 etExpression.setText(item.expression);
             }
         });
     }
-
-//    @Override
-//    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) { // При повороте экрана
-//        super.onRestoreInstanceState(savedInstanceState);
-//        Log.d(LOG_TAG, "onRestoreInstanceState()");
-//        cnt = savedInstanceState.getInt("count");
-//    }
-//
-//    @Override
-//    protected void onSaveInstanceState(Bundle outState) {
-//        super.onSaveInstanceState(outState);
-//        outState.putInt("count", cnt);
-//        Log.d(LOG_TAG, "onSaveInstanceState()");
-//    }
 
     public void onInput(View v) {
         etExpression.setText(etExpression.getText().toString() + ((Button) v).getText());
@@ -96,13 +85,39 @@ public class MainActivity extends Activity {
     }
 
     private void addLog(String expression, String result) {
-        CalcModel calcModel = new CalcModel(expression, result);
-        logList.add(0, calcModel);
+        LogModel logModel = new LogModel(expression, result);
+        logList.add(0, logModel);
         if (logList.size() > logSize) {
             logList.remove(logSize);
         }
         logAdapter.notifyDataSetChanged();
         lvLog.smoothScrollToPosition(0);
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////// SAVE & RESTORE
+    @Override
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        ArrayList<String> expressions = savedInstanceState.getStringArrayList(SAVE_EXPR);
+        ArrayList<String> results = savedInstanceState.getStringArrayList(SAVE_RESULT);
+        if (expressions != null && results != null) {
+            for (int i = 0; i < expressions.size() && i < results.size(); i++) {
+                logList.add(new LogModel(expressions.get(i), results.get(i)));
+            }
+        }
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        ArrayList<String> expressions = new ArrayList<>();
+        ArrayList<String> results = new ArrayList<>();
+        for (LogModel cm : logList) {
+            expressions.add(cm.expression);
+            results.add(cm.result);
+        }
+        outState.putStringArrayList(SAVE_EXPR, expressions);
+        outState.putStringArrayList(SAVE_RESULT, results);
     }
 
 }

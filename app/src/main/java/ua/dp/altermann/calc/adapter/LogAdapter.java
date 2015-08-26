@@ -10,15 +10,15 @@ import android.widget.TextView;
 import java.util.List;
 
 import ua.dp.altermann.calc.R;
-import ua.dp.altermann.calc.model.CalcModel;
+import ua.dp.altermann.calc.model.LogModel;
 
 public class LogAdapter extends BaseAdapter {
 
     Context ctx;
     LayoutInflater lInflater;
-    List<CalcModel> list;
+    List<LogModel> list;
 
-    public LogAdapter(Context ctx, List<CalcModel> list) {
+    public LogAdapter(Context ctx, List<LogModel> list) {
         this.ctx = ctx;
         this.list = list;
         lInflater = (LayoutInflater) ctx.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -30,7 +30,7 @@ public class LogAdapter extends BaseAdapter {
     }
 
     @Override
-    public CalcModel getItem(int position) {
+    public LogModel getItem(int position) {
         return list.get(position);
     }
 
@@ -45,9 +45,9 @@ public class LogAdapter extends BaseAdapter {
         if (view == null) {
             view = lInflater.inflate(R.layout.list_log_item, parent, false);
         }
-        CalcModel calcModel = getItem(position);
-        ((TextView) view.findViewById(R.id.tvExpr)).setText(calcModel.expression);
-        ((TextView) view.findViewById(R.id.tvResult)).setText(calcModel.result);
+        LogModel logModel = getItem(position);
+        ((TextView) view.findViewById(R.id.tvExpr)).setText(logModel.expression);
+        ((TextView) view.findViewById(R.id.tvResult)).setText(logModel.result);
         return view;
     }
 
