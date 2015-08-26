@@ -1,8 +1,8 @@
 package ua.dp.altermann.calc;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -23,7 +23,7 @@ import java.util.regex.PatternSyntaxException;
 
 import ua.dp.altermann.calc.expression.BaseExpr;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends Activity {
 
     public static final String LOG_TAG = "Calc_main";
     public static final String LIST_ATTR_EXPRESSION = "expression";
@@ -100,19 +100,4 @@ public class MainActivity extends AppCompatActivity {
         lvLog.smoothScrollToPosition(0);
     }
 
-    /////////////////////////////////////////////////////////////////////////////////////////// MENU
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
 }
