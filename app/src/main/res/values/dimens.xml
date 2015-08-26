@@ -3,8 +3,9 @@
     <dimen name="activity_horizontal_margin">10dp</dimen>
     <dimen name="activity_vertical_margin">10dp</dimen>
     <dimen name="splash_test_size">50sp</dimen>
-    <dimen name="btn_text_size">25sp</dimen>
     <dimen name="list_text_size">20sp</dimen>
+    <dimen name="edit_text_size">22sp</dimen>
+    <dimen name="btn_text_size">24sp</dimen>
     <dimen name="list_result_margin">10dp</dimen>
     <dimen name="btn_margin">1dp</dimen>
 </resources>

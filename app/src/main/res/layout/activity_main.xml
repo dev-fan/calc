@@ -21,7 +21,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/etExpression"
         android:digits="1234567890+-*/.()"
-        android:textSize="@dimen/list_text_size"
+        android:textSize="@dimen/edit_text_size"
         android:inputType="none"
         android:focusable="false" />
 
@@ -34,7 +34,8 @@
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
 
             <Button
                 android:layout_width="wrap_content"
@@ -100,7 +101,8 @@
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
 
             <Button
                 android:layout_width="wrap_content"
@@ -166,7 +168,8 @@
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
 
             <Button
                 android:layout_width="wrap_content"
@@ -232,7 +235,8 @@
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
 
             <Button
                 android:layout_width="wrap_content"
