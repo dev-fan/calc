@@ -47,6 +47,9 @@ public abstract class BaseExpr {
     }
 
     public static String calc(String expr) {
+        // Fix
+        expr = Pattern.compile("(\\d+)(\\()").matcher(expr).replaceAll("$1*$2");
+        expr = Pattern.compile("(\\))(\\d+)").matcher(expr).replaceAll("$1*$2");
         // Brackets
         if (Pattern.matches(".*?" + patternBrackets + ".*?", expr)) {
             Pattern ptnBracket = Pattern.compile(patternBrackets, Pattern.CASE_INSENSITIVE);
