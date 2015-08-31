@@ -1,7 +1,5 @@
 package ua.dp.altermann.calc.expression;
 
-import android.util.Log;
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Matcher;
