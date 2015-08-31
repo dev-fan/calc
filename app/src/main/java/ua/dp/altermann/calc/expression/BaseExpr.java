@@ -1,5 +1,7 @@
 package ua.dp.altermann.calc.expression;
 
+import android.util.Log;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Matcher;
@@ -47,11 +49,13 @@ public abstract class BaseExpr {
     }
 
     public static String calc(String expr) {
-        // Fix
-        expr = Pattern.compile("(\\d+)(\\()").matcher(expr).replaceAll("$1*$2");
-        expr = Pattern.compile("(\\))(\\d+)").matcher(expr).replaceAll("$1*$2");
         // Brackets
         if (Pattern.matches(".*?" + patternBrackets + ".*?", expr)) {
+            // Fix
+            expr = expr.replaceAll("(\\d+)(\\()", "$1*$2");
+            expr = expr.replaceAll("(\\))(\\d+)", "$1*$2");
+            expr = expr.replaceAll("\\)\\(", ")*(");
+
             Pattern ptnBracket = Pattern.compile(patternBrackets, Pattern.CASE_INSENSITIVE);
             StringBuffer bfBracket = new StringBuffer();
             Matcher mtrBracket = ptnBracket.matcher(expr);
