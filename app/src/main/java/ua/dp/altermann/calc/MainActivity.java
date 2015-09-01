@@ -1,12 +1,11 @@
 package ua.dp.altermann.calc;
 
 import android.app.Activity;
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.text.InputType;
 import android.util.Log;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
@@ -38,8 +37,7 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         etExpression = (EditText) findViewById(R.id.etExpression);
-        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-        imm.hideSoftInputFromWindow(etExpression.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+        etExpression.setInputType(InputType.TYPE_NULL);
 
         // Логирование выражений
         lvLog = (ListView) findViewById(R.id.lvLog);
