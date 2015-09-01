@@ -54,11 +54,7 @@ public class MainActivity extends Activity {
     }
 
     public void onInput(View v) {
-        String text = etExpression.getText().toString();
-        int startSelect = etExpression.getSelectionStart();
-        int endSelect = etExpression.getSelectionEnd();
-        etExpression.setText(text.substring(0, startSelect) + ((Button) v).getText() + text.substring(endSelect, text.length()));
-        etExpression.setSelection(startSelect + 1);
+        etExpression.setText(etExpression.getText().toString() + ((Button) v).getText());
     }
 
     public void onClear(View v) {
@@ -68,16 +64,8 @@ public class MainActivity extends Activity {
                 break;
             case R.id.btnDel:
                 String text = etExpression.getText().toString();
-                int startSelect = etExpression.getSelectionStart();
-                int endSelect = etExpression.getSelectionEnd();
                 if (text.length() > 0) {
-                    if (startSelect == endSelect && startSelect > 0) {
-                        etExpression.setText(text.substring(0, startSelect - 1) + text.substring(startSelect, text.length()));
-                        etExpression.setSelection(startSelect - 1);
-                    } else if (startSelect != endSelect) {
-                        etExpression.setText(text.substring(0, startSelect) + text.substring(endSelect, text.length()));
-                        etExpression.setSelection(startSelect);
-                    }
+                    etExpression.setText(text.substring(0, text.length() -1));
                 }
                 break;
         }

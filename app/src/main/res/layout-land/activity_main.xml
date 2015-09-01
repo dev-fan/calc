@@ -29,7 +29,8 @@
             android:id="@+id/etExpression"
             android:digits="1234567890+-*/.()"
             android:textSize="@dimen/edit_text_size"
-            android:inputType="none" />
+            android:inputType="none"
+            android:focusable="false" />
 
         <LinearLayout
             android:orientation="vertical"
