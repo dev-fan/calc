@@ -28,7 +28,8 @@
             android:layout_height="wrap_content"
             android:id="@+id/etExpression"
             android:digits="1234567890+-*/.()"
-            android:textSize="@dimen/edit_text_size" />
+            android:textSize="@dimen/edit_text_size"
+            android:inputType="none" />
 
         <LinearLayout
             android:orientation="vertical"
